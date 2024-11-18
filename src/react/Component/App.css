@@ -1,0 +1,16 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  padding: 10px;
+  width: 20em;
+}
+.title {
+  margin: 10px;
+  padding: 10px;
+  inline-size: max-content;
+}
+.hide {
+  display: none;
+}
