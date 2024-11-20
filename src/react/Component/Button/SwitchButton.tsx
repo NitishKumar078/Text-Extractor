@@ -1,37 +1,49 @@
 import { useState } from "react";
 import "./Button.css";
+import { setIteam } from "../utils/localstorage";
 
-const SwitchButton = () => {
-  const [SelectedButton, setSelectedButton] = useState(false);
+interface ExtractButtonProps {
+  settext: React.Dispatch<React.SetStateAction<string>>; // Type the settext function
+}
+const SwitchButton: React.FC<ExtractButtonProps> = ({ settext }) => {
+  const [SelectedButton, setSelectedButton] = useState(true);
+
   const SelectionHandler = async () => {
     setSelectedButton(!SelectedButton);
-    const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
-    const [tab] = tabs;
 
-    const selectedText = await chrome.scripting
-      .executeScript({
-        target: { tabId: tab.id ? tab.id : 0 },
-        func: () => {
-          const selection = window.getSelection();
-          const selectedText = selection ? selection.toString() : "";
-          console.log(selectedText);
-          return selectedText;
-        },
-      })
-      .then((result) => result[0].result || "");
-    debugger;
-    console.log("Selected text:", selectedText);
-    const element = document.getElementsByClassName("text_area");
-    const noteEle = document.getElementsByClassName("note");
-    if (element && noteEle) {
-      (noteEle[0] as HTMLTextAreaElement).style.display = "block";
-      (element[0] as HTMLTextAreaElement).value = selectedText || "";
+    if (SelectedButton) {
+      // send message to content script for selection of element and extract the text
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        const activeTab = tabs[0]; // Get the first (active) tab
+        if (activeTab.id) {
+          // Send message only if the tab exists
+          chrome.tabs.sendMessage(
+            activeTab.id,
+            { action: "selection" },
+            (response) => {
+              setIteam("selctedtext", response.text);
+              settext(response.text);
+            }
+          );
+        } else {
+          console.error("No active tab found");
+        }
+      });
+    } else {
+      // again send the message to stop the content script
+      chrome.runtime.sendMessage({ message: "stop" }, function (response) {
+        console.log(response);
+      });
     }
   };
 
   return (
     <>
-      <input type="checkbox" onClick={SelectionHandler} />
+      <input
+        type="checkbox"
+        onClick={SelectionHandler}
+        title="Click and Select the Element"
+      />
     </>
   );
 };

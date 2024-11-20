@@ -1,10 +1,14 @@
 import "./ui.css";
+import { getIteam } from "../utils/localstorage";
 
 const Copy = () => {
   return (
     <div>
       {/* From Uiverse.io by Galahhad */}
-      <button className="copy">
+      <button
+        className="copy"
+        onClick={() => navigator.clipboard.writeText(getIteam("selectedtext"))}
+      >
         <span
           data-text-end="Copied!"
           data-text-initial="Copy to clipboard"
