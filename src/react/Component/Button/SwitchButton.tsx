@@ -31,8 +31,17 @@ const SwitchButton: React.FC<ExtractButtonProps> = ({ settext }) => {
       });
     } else {
       // again send the message to stop the content script
-      chrome.runtime.sendMessage({ message: "stop" }, function (response) {
-        console.log(response);
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        const activeTab = tabs[0]; // Get the first (active) tab
+        if (activeTab.id) {
+          chrome.tabs.sendMessage(
+            activeTab.id,
+            { action: "stop" },
+            function (response) {
+              console.log(response);
+            }
+          );
+        }
       });
     }
   };

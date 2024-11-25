@@ -23,7 +23,7 @@ function untracker(event: MouseEvent) {
 function tracker(event: MouseEvent) {
   if (event.target instanceof HTMLElement) {
     Elementbgcolor = event.target.style.backgroundColor;
-    event.target.style.backgroundColor = "#72d9ebb5";
+    event.target.style.backgroundColor = "#9ae7d9b3";
   }
 }
 
@@ -44,8 +44,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             filters.forEach((filter) => {
               text = text.replace(filter, "");
             });
-
-            //   console.log(text);
+            e.target.style.backgroundColor = Elementbgcolor;
+            deactivate();
             sendResponse({ text });
           }
         }
@@ -61,4 +61,5 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     console.log("stop the content script");
     deactivate();
   }
+  return true;
 });
