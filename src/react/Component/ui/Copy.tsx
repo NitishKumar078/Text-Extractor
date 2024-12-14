@@ -1,12 +1,22 @@
 import "./ui.css";
 import { getIteam } from "../utils/localstorage";
 
-const Copy = () => {
+interface copyProps {
+  istrimSpace: boolean;
+}
+
+const Copy: React.FC<copyProps> = ({ istrimSpace }) => {
   return (
     <div>
       <button
         className="copy"
-        onClick={() => navigator.clipboard.writeText(getIteam("selectedtext"))}
+        onClick={() =>
+          navigator.clipboard.writeText(
+            istrimSpace
+              ? getIteam("selectedtext").trim()
+              : getIteam("selectedtext")
+          )
+        }
       >
         <span
           data-text-end="Copied!"

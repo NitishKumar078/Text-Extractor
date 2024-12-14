@@ -43,7 +43,7 @@ const App = () => {
             </label>
           </div>
         </div>
-        <Copy />
+        <Copy istrimSpace={trimSpace} />
       </div>
     </div>
   );
