@@ -4,7 +4,6 @@ import { getIteam } from "../utils/localstorage";
 const Copy = () => {
   return (
     <div>
-      {/* From Uiverse.io by Galahhad */}
       <button
         className="copy"
         onClick={() => navigator.clipboard.writeText(getIteam("selectedtext"))}

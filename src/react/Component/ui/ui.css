@@ -1,4 +1,3 @@
-/* tooltip settings 👇 */
 /* copy button */
 .copy {
   /* button */
@@ -14,17 +13,11 @@
   --tooltip-bg: #f4f3f3;
   --toolptip-border-radius: 4px;
   --tooltip-font-family: Menlo, Roboto Mono, monospace;
-  /* 👆 this field should not be empty */
   --tooltip-font-size: 12px;
-  /* 👆 this field should not be empty */
   --tootip-text-color: rgb(50, 50, 50);
   --tooltip-padding-x: 7px;
   --tooltip-padding-y: 7px;
   --tooltip-offset: 8px;
-  /* --tooltip-transition-duration: 0.3s; */
-  /* 👆 if you need a transition, 
-    just remove the comment,
-    but I didn't like the transition :| */
 }
 
 .copy {

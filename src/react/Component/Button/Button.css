@@ -1,13 +1,7 @@
-/* .container {
-  display: flex;
-  justify-items: center;
-  flex-direction: column;
-} */
-
 /* Extract-button  */
 input[type="checkbox"] {
   align-items: center;
-  -webkit-appearance: none;
+  appearance: none;
   border: 3px solid #ececec;
   border-radius: 50%;
   box-shadow: -10px -10px 15px hsla(0, 0%, 100%, 0.5),
