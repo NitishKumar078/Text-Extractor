@@ -10,8 +10,7 @@ input[type="checkbox"] {
   -webkit-appearance: none;
   border: 3px solid #ececec;
   border-radius: 50%;
-  box-shadow:
-    -10px -10px 15px hsla(0, 0%, 100%, 0.5),
+  box-shadow: -10px -10px 15px hsla(0, 0%, 100%, 0.5),
     10px 10px 15px rgba(70, 70, 70, 0.12);
   cursor: pointer;
   display: flex;
@@ -33,8 +32,7 @@ input[type="checkbox"]::after {
 }
 
 input[type="checkbox"]:checked {
-  box-shadow:
-    -10px -10px 15px rgba(255, 255, 255, 0.5),
+  box-shadow: -10px -10px 15px rgba(255, 255, 255, 0.5),
     10px 10px 15px rgba(70, 70, 70, 0.12),
     inset -10px -10px 15px rgba(255, 255, 255, 0.5),
     inset 10px 10px 15px rgba(70, 70, 70, 0.12);
@@ -63,7 +61,7 @@ input[type="checkbox"]:checked::after {
 .icon-Container {
   height: 35px;
   width: 65px;
-  background-color: #f59aff;
+  background-color: #91baef;
   display: flex;
   align-items: center;
   justify-content: center;
