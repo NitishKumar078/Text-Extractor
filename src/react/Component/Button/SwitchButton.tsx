@@ -7,7 +7,7 @@ interface ExtractButtonProps {
 }
 const SwitchButton: React.FC<ExtractButtonProps> = ({ settext }) => {
   const [SelectedButton, setSelectedButton] = useState(true);
-
+  const ignoreUrls = ["chrome://"]; // all new and extion pages will be ignored
   const SelectionHandler = async () => {
     setSelectedButton(!SelectedButton);
 
@@ -15,8 +15,18 @@ const SwitchButton: React.FC<ExtractButtonProps> = ({ settext }) => {
       // send message to content script for selection of element and extract the text
       chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         const activeTab = tabs[0]; // Get the first (active) tab
-        if (activeTab.id) {
+        if (activeTab.id && activeTab.url) {
           // Send message only if the tab exists
+          // Check if the active tab URL starts with any of the ignore URLs
+          const shouldIgnore = ignoreUrls.some((ignoreUrl) =>
+            activeTab.url?.startsWith(ignoreUrl)
+          );
+
+          if (shouldIgnore) {
+            console.log("Ignoring this page due to its URL.");
+            return; // Exit the function if the URL should be ignored
+          }
+
           chrome.tabs.sendMessage(
             activeTab.id,
             { action: "selection" },
