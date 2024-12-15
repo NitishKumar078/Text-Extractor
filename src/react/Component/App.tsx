@@ -39,7 +39,7 @@ const App = () => {
               <div className="transition"></div>
             </label>
             <label className="label" htmlFor="option1">
-              trim Extra Space's
+              Trim Extra Space's
             </label>
           </div>
         </div>

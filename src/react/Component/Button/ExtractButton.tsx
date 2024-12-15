@@ -6,6 +6,21 @@ interface ExtractButtonProps {
   settext: React.Dispatch<React.SetStateAction<string>>; // Type the settext function
 }
 
+/**
+ * ExtractButton component allows users to extract selected text from the
+ * currently active browser tab. It uses Chrome's scripting API to execute
+ * a script in the active tab, retrieving any text that the user has selected.
+ * The extracted text is then passed to a parent component via the settext
+ * function prop.
+ *
+ * @component
+ * @param {Object} props - The props for the component.
+ * @param {React.Dispatch<React.SetStateAction<string>>} props.settext - A
+ * function to update the parent's text state with the selected text.
+ *
+ * @returns {JSX.Element} A button element that, when clicked, extracts the
+ * selected text from the active tab and updates the parent state.
+ */
 const ExtractButton: React.FC<ExtractButtonProps> = ({ settext }) => {
   const [activate, toggleActivate] = useState(false);
 

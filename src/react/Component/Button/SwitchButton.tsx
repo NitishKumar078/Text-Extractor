@@ -5,6 +5,12 @@ import { setIteam } from "../utils/localstorage";
 interface ExtractButtonProps {
   settext: React.Dispatch<React.SetStateAction<string>>; // Type the settext function
 }
+/**
+ * The SwitchButton component handles the extraction of text from the selected element and handles the visibility of the copy button.
+ *
+ * @param {React.Dispatch<React.SetStateAction<string>>} settext - A function to update the parent state with the extracted text.
+ * @returns {React.ReactElement} The SwitchButton component which consists of a checkbox.
+ */
 const SwitchButton: React.FC<ExtractButtonProps> = ({ settext }) => {
   const [SelectedButton, setSelectedButton] = useState(true);
   const ignoreUrls = ["chrome://"]; // all new and extion pages will be ignored
