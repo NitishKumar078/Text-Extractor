@@ -31,6 +31,7 @@
   cursor: pointer;
   position: relative;
   outline: none;
+  right: 37px;
 }
 
 .tooltip {
